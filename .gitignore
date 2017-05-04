@@ -58,3 +58,5 @@ view/bakfile.erb
 *.dmp
 view/trush/
 database.yml
+*.rb_org
+

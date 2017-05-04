@@ -31,12 +31,12 @@ class GazoManager
     
     # データベースに接続
     @gazo_client = Mysql2::Client.new(
-      :host => "#{db['gazo']['host']}",
-      :username => "#{db['gazo']['username']}",
-      :password => "#{db['gazo']['password']}",
-      :socket => "#{db['gazo']['socket']}",
-      :encoding => "#{db['gazo']['encoding']}",
-      :database => "#{db['gazo']['database']}"
+      :host => "#{db['db']['host']}",
+      :username => "#{db['db']['username']}",
+      :password => "#{db['db']['password']}",
+      :socket => "#{db['db']['socket']}",
+      :encoding => "#{db['db']['encoding']}",
+      :database => "#{db['db']['database']}"
     )
     @gazo_table = "#{db['gazo']['table']}"
   end
@@ -74,14 +74,16 @@ class GazoManager
     if (mode == 'new')
       query = %|REPLACE INTO #{@gazo_table} (
             file, comment, ctype, image, created_at, updated_at)
-            values ('#{gazo.file}', '#{gazo.comment}', '#{gazo.ctype}',
-            #{gazo.image},
-            cast("#{gazo.created_at}" as datetime),
-            cast("#{gazo.updated_at}" as datetime))|
+            values (?, ?, ?, ?,
+                cast("#{gazo.created_at}" as datetime),
+                cast("#{gazo.updated_at}" as datetime))|
+      statement = @gazo_client.prepare(query)
+      results = statement.execute(gazo.file, gazo.comment, gazo.ctype,
+                                  gazo.image)
+      
+      @notice = "登録しました。"
     end
 
-    results = @gazo_client.query(query)
-    @notice = "登録しました。"
     listAllGazos
   end
 

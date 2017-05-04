@@ -47,12 +47,12 @@ class BlogManager
     
     # データベースに接続
     @client = Mysql2::Client.new(
-      :host => "#{db['blog']['host']}",
-      :username => "#{db['blog']['username']}",
-      :password => "#{db['blog']['password']}",
-      :socket => "#{db['blog']['socket']}",
-      :encoding => "#{db['blog']['encoding']}",
-      :database => "#{db['blog']['database']}"
+      :host => "#{db['db']['host']}",
+      :username => "#{db['db']['username']}",
+      :password => "#{db['db']['password']}",
+      :socket => "#{db['db']['socket']}",
+      :encoding => "#{db['db']['encoding']}",
+      :database => "#{db['db']['database']}"
     )
     @table_name = "#{db['blog']['table']}"
   end
