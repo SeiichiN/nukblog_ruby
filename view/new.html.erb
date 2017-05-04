@@ -1,0 +1,74 @@
+<%# coding: utf-8 %>
+
+<article>
+
+    <h2>New Entry</h2>
+    
+    <form class="new_entry" action="setData.rb" method="post">
+        <div class="field">
+            <label>ID:
+                <%= "#{@newid}" %>
+            </label>
+        </div>
+      
+        <div class="field">
+            <label>Title<br>
+                <input type="text" name="title" id="entry_title">
+            </label>
+        </div>
+        <div class="field">
+            <label>Body<br>
+                <textarea name="body" id="entry_body"></textarea>
+            </label>
+        </div>
+        <div class="field">
+            <label>カテゴリ<br>
+                <input type="text" name="category" id="entry_category">
+            </label>
+        </div>
+        <div class="field">
+            <label>タグ<br>
+                <input type="text" name="tag" id="entry_tag">
+            </label>
+        </div>
+        <div class="field">
+            <label>カウント<br>
+                <input type="number" name="count" id="count" size="5" value="1">
+        </div>
+        <div class="field">
+            <label>作成日：<br>
+                <input type="number" name="created-year" class="created_at" id="created-year" value="<%= DateTime.now.strftime("%Y").to_s %>">
+                <input type="number" name="created-month" class="created_at" id="created-month" value="<%= DateTime.now.strftime("%m").to_s %>" min="1" max="12">
+                <input type="number" name="created-day" class="created_at" id="created-day" value="<%= DateTime.now.strftime("%d").to_s %>" min="1" max="31">
+                −
+                <input type="number" name="created-hour" class="created_at" id="created-hour" value="<%= DateTime.now.strftime("%H").to_s %>" min="0" max="24">
+                ：
+                <input type="number" name="created-min" class="created_at" id="created-min" value="<%= DateTime.now.strftime("%M").to_s %>" min="0" max="59">
+                ：
+                <input type="number" name="created-sec" class="created_at" id="created-sec" value="<%= DateTime.now.strftime("%S").to_s %>" min="0" max="59">
+
+        </div>
+        <div class="field">
+            <label>更新日：<br>
+                <input type="number" name="updated-year" class="updated_at" id="updated-year" value="<%= DateTime.now.strftime("%Y").to_s %>">
+                <input type="number" name="updated-month" class="updated_at" id="updated-month" value="<%= DateTime.now.strftime("%m").to_s %>" min="1" max="12">
+                <input type="number" name="updated-day" class="updated_at" id="updated-day" value="<%= DateTime.now.strftime("%d").to_s %>" min="1" max="31">
+                −
+                <input type="number" name="updated-hour" class="updated_at" id="updated-hour" value="<%= DateTime.now.strftime("%H").to_s %>" min="0" max="24">
+                ：
+                <input type="number" name="updated-min" class="updated_at" id="updated-min" value="<%= DateTime.now.strftime("%M").to_s %>" min="0" max="59">
+                ：
+                <input type="number" name="updated-sec" class="updated_at" id="updated-sec" value="<%= DateTime.now.strftime("%S").to_s %>" min="0" max="59">
+
+        </div>
+        <input type="hidden" name="mode" id="mode" value="new">
+        <div class="actions btn44aria">
+            <input type="submit" value="Create Entry">
+        </div>
+    </form>
+    
+    <p class="action">
+        <a href="entry"><i class="fa fa-wrench fa-2x"></i></a>
+    </p>
+    
+</article>

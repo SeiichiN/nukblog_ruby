@@ -1,0 +1,29 @@
+mysql> desc entries;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title      | varchar(255) | YES  |     | NULL    |                |
+| body       | text         | YES  |     | NULL    |                |
+| created_at | datetime     | YES  |     | NULL    |                |
+| updated_at | datetime     | YES  |     | NULL    |                |
+| cathegory  | varchar(255) | YES  |     | NULL    |                |
+| tag        | varchar(255) | YES  |     | NULL    |                |
+| count      | int(11)      | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.06 sec)
+
+
+mysql> desc gazos;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| file       | varchar(255) | YES  |     | NULL    |                |
+| comment    | varchar(255) | YES  |     | NULL    |                |
+| ctype      | varchar(255) | YES  |     | NULL    |                |
+| image      | blob         | YES  |     | NULL    |                |
+| created_at | datetime     | YES  |     | NULL    |                |
+| updated_at | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)

@@ -1,0 +1,85 @@
+/* line 5, ../scss/main.scss */
+body {
+  background-color: #fff;
+  color: #222;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* line 13, ../scss/main.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* line 18, ../scss/main.scss */
+p.action {
+  line-height: 1.0;
+}
+
+/* line 21, ../scss/main.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 14px;
+  overflow: auto;
+}
+
+/* line 28, ../scss/main.scss */
+a {
+  color: #333;
+}
+/* line 30, ../scss/main.scss */
+a:visited {
+  color: #666;
+}
+/* line 33, ../scss/main.scss */
+a:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+/* line 41, ../scss/main.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 46, ../scss/main.scss */
+#notice {
+  color: green;
+}
+
+/* line 50, ../scss/main.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 56, ../scss/main.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 63, ../scss/main.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 73, ../scss/main.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

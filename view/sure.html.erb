@@ -1,0 +1,16 @@
+<%# coding: utf-8 %>
+
+<article>
+
+<h5 class="home-title">
+	タイトル：<%= @this_blog.title %>
+</h5>
+
+<p>本当に削除しますか？</p>
+
+
+	<p class="action">
+        <a href="./delete.rb?id=<%= @this_blog.id %>"><i class="fa fa-trash fa-2x"></i>削除する</a>
+        <a href="./archive.rb"><i class="fa fa-list fa-2x"></i>一覧にもどる</a>
+	</p>
+</article>

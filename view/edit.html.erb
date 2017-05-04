@@ -1,0 +1,89 @@
+<%# coding: utf-8 %>
+
+<article>
+
+    <h2>Edit Entry</h2>
+    
+    <form class="new_entry" action="setData.rb" method="post">
+        <div class="field">
+            <label>ID:
+                <%= "#{@this_blog.id}" %>
+            </label>
+            <input type="hidden" name="id" id="entry_id" value="<%= %|#{@this_blog.id}| %>">
+        </div>
+      
+        <div class="field">
+            <label>Title<br>
+                <input type="text" name="title" id="entry_title" value="<%= %|#{@this_blog.title}| %>">
+            </label>
+        </div>
+        <div class="field">
+            <label>Body<br>
+                <textarea name="body" id="entry_body"><%= %|#{@this_blog.body}| %></textarea>
+            </label>
+        </div>
+        <div class="field">
+            <label>カテゴリ<br>
+                <input type="text" name="category" id="entry_category" value="<%= %|#{@this_blog.category}| %>">
+            </label>
+        </div>
+        <div class="field">
+            <label>タグ<br>
+                <input type="text" name="tag" id="entry_tag" value="<%= %|#{@this_blog.tag}| %>">
+            </label>
+        </div>
+        <div class="field">
+            <label>カウント<br>
+                <input type="number" name="count" id="count" size="5" value="<%= %|#{@this_blog.count}| %>">
+        </div>
+        <%
+        created_year = @this_blog.created_at.strftime("%Y")
+        created_month = @this_blog.created_at.strftime("%m")
+        created_day = @this_blog.created_at.strftime("%d")
+        created_hour = @this_blog.created_at.strftime("%H")
+        created_min = @this_blog.created_at.strftime("%M")
+        created_sec = @this_blog.created_at.strftime("%S")
+        updated_year = DateTime.now.strftime("%Y")
+        updated_month = DateTime.now.strftime("%m")
+        updated_day = DateTime.now.strftime("%d")
+        updated_hour = DateTime.now.strftime("%H")
+        updated_min = DateTime.now.strftime("%M")
+        updated_sec = DateTime.now.strftime("%S")
+        %>
+        <div class="field">
+            <label>作成日：<br>
+                <input type="number" name="created-year" class="created_at" id="created-year" value="<%= %|#{created_year}| %>">
+                <input type="number" name="created-month" class="created_at" id="created-month" value="<%= %|#{created_month}| %>" min="1" max="12">
+                <input type="number" name="created-day" class="created_at" id="created-day" value="<%= %|#{created_day}| %>" min="1" max="31">
+                −
+                <input type="number" name="created-hour" class="created_at" id="created-hour" value="<%= %|#{created_hour}| %>" min="0" max="24">
+                ：
+                <input type="number" name="created-min" class="created_at" id="created-min" value="<%= %|#{created_min}| %>" min="0" max="59">
+                ：
+                <input type="number" name="created-sec" class="created_at" id="created-sec" value="<%= %|#{created_sec}| %>" min="0" max="59">
+
+        </div>
+        <div class="field">
+            <label>更新日：<br>
+                <input type="number" name="updated-year" class="updated_at" id="updated-year" value="<%= %|#{updated_year}| %>">
+                <input type="number" name="updated-month" class="updated_at" id="updated-month" value="<%= %|#{updated_month}| %>" min="1" max="12">
+                <input type="number" name="updated-day" class="updated_at" id="updated-day" value="<%= %|#{updated_day}| %>" min="1" max="31">
+                −
+                <input type="number" name="updated-hour" class="updated_at" id="updated-hour" value="<%= %|#{updated_hour}| %>" min="0" max="24">
+                ：
+                <input type="number" name="updated-min" class="updated_at" id="updated-min" value="<%= %|#{updated_min}| %>" min="0" max="59">
+                ：
+                <input type="number" name="updated-sec" class="updated_at" id="updated-sec" value="<%= %|#{updated_sec}| %>" min="0" max="59">
+
+        </div>
+        <input type="hidden" name="mode" id="mode" value="update">
+        <div class="actions btn44aria">
+            <input type="submit" value="Create Entry">
+        </div>
+    </form>
+    
+    <p class="action">
+        <a href="./list.rb"><i class="fa fa-wrench fa-2x"></i></a>
+    </p>
+    
+</article>

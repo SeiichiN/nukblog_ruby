@@ -1,0 +1,124 @@
+<%# -*- coding: utf-8 -*- %>
+
+<% require './blog.rb' %>
+<% blog_data = BlogManager.new() %>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+  <title>My開発メモ</title>
+  <link rel="icon" href="/img/favicon.ico"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <%#= javascript_include_tag 'application' %>
+  <%#= csrf_meta_tags これは、ログインセキュリティのタグみたい %>
+</head>
+<body>
+<div class="main">
+	<header>
+		<h1><img src="img/memo.png">My開発メモ</h1>
+
+		<nav class="header-menus" id="slide_menu">
+			<ul>
+				<li class="nav-icon">
+                    <a href="index.html" id="home">home</a></li>
+				<li class="nav-icon">
+                    <a href="archive.html" id="archive">archive</a></li>
+				<li class="nav-icon">
+                    <a href="search.html" id="search">search</a></li>
+				<li class="nav-icon">
+                    <a href="info.html" id="info">info</a></li>
+				<li class="nav-icon">
+                    <a href="write.html" id="write">write</a></li>
+				<li class="nav-icon">
+                    <a href="manage.html" id="manage">manage</a></li>
+				<li class="gazo-icon">
+                    <a href="ichiran.html" id="ichiran">一覧</a></li>
+			</ul>
+		</nav>
+
+		<button id="button"><i class="fa fa-bars fa-2x"></i></button>
+
+	</header>
+
+	<p style="color: green">（更新しました）<%# flash[:notice] %></p>
+
+    <%# blog_data.showBlog(370) %>
+    <p>table_name= <% print "#{blog_data.table_name}" %></p>
+    <% query = "select * from #{blog_data.table_name}" %>
+    <% results = blog_data.client.query(query) %>
+    <% results.first do |row| %>
+
+
+<article>
+
+  <h2>最近の投稿</h2>
+  
+    <div class="entry">
+      <div class="date">
+  			<%= "#{row['created_at'].strftime('%Y')}" %>年
+  			<%= "#{row['created_at'].strftime('%m')}" %>月
+  			<%= "#{row['created_at'].strftime('%d')}" %>日
+  		</div>
+      <h2 class="home-title"><%= "#{row['title']}" %></h2>
+      <div><%= "#{row['body']}" %></div> <%# entry.to_html %>
+      <div><strong>Category:</strong><%= "#{row['category']}" %></div>
+      <div><strong>Tag:</strong><%= "#{row['tag']}" %></div>
+      <div><strong>Count:</strong><%= "#{row['count']}" %></div>
+      <p class="action"><%# link_to '', entry, class: 'fa fa-picture-o fa-3x' %></p>
+    </div>
+
+</article>
+
+    <% end %>
+
+	<div id="page-top" class="page-top">
+		<p><a id="move-page-top" class="move-page-top">
+			<i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+	</div>
+
+	<footer>
+		<small>NukBlog version 1.2.6 &copy; 2015 - 2017 Billie's Works</small>
+	</footer>
+</div><!-- main -->
+
+
+<script>
+// ファイルのアップロードで保存前の画像を表示・ファイル名も表示する
+
+function handleFileSelect(evt){
+	var files = evt.target.files;  // FileList object
+
+	// Loop through the FileList and render image files as thumbnails.
+	var f = files[0];
+
+	// only process image files.
+	if (!f.type.match('image.*')){
+		return; // 以降の処理はせずに、次の繰り返し処理にすすむ
+	}
+
+	var reader = new FileReader();
+
+	// Closure to capture the file information.
+	reader.onload = (function(theFile){
+		return function(e){
+			document.getElementById('outputList').setAttribute("src", e.target.result);
+			console.log("target : " + e.target.result);
+		};
+	})(f);
+
+	// Read in the image file as a data URL.
+	reader.readAsDataURL(f);
+
+	document.getElementById('gazo_file').setAttribute("value", escape(f.name));
+	document.getElementById('file_size').innerHTML = "<small>size: " + parseInt(f.size / 1000) + "k</small>";
+
+}
+document.getElementById('gazo_data').addEventListener('change', handleFileSelect, false);
+
+</script>
+	
+</body>
+</html>

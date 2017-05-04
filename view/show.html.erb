@@ -1,0 +1,42 @@
+<%# coding: utf-8 %>
+
+<article>
+
+<h2 class="home-title">
+		<%= @this_blog.title %>
+	</h2>
+
+	<p>
+	    <%= @this_blog.to_html %>
+	</p>
+
+	<p>
+		<strong>カテゴリ:</strong>
+		<%= @this_blog.category %>
+	</p>
+
+	<p>
+		<strong>タグ:</strong>
+		<%= @this_blog.tag %>
+	</p>
+
+	<p>
+		<strong>Count:</strong>
+		<%= @this_blog.count %>
+	</p>
+
+	<p>
+	  <strong>作成日：</strong>
+	  <%= @this_blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+	</p>
+
+	<p>
+	  <strong>更新日：</strong>
+	  <%= @this_blog.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+	</p>
+
+	<p class="action">
+        <a href="./edit.rb?id=<%= @this_blog.id %>"><i class="fa fa-edit fa-2x"></i></a>
+        <a href="./archive.rb"><i class="fa fa-list fa-2x"></i></a>
+	</p>
+</article>

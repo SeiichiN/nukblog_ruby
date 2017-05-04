@@ -1,0 +1,89 @@
+@media screen and (max-width: 481px) {
+  /* line 5, ../scss/swipeList.sass */
+  .swipe-list .list {
+    display: table;
+    height: 100%;
+    position: relative;
+    /*	background: #fafafa */
+  }
+  /* line 9, ../scss/swipeList.sass */
+  .swipe-list .list .list-body {
+    position: relative;
+    z-index: 10;
+  }
+  /* line 13, ../scss/swipeList.sass */
+  .swipe-list .list .list-contents {
+    padding: 5px 10px;
+  }
+  /* line 17, ../scss/swipeList.sass */
+  .swipe-list .list .list-arrow {
+    color: #fff;
+    padding: 10px;
+    background: #00897b;
+    vertical-align: middle;
+  }
+  /* line 23, ../scss/swipeList.sass */
+  .swipe-list .list .list-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  /* line 27, ../scss/swipeList.sass */
+  .swipe-list .list .list-btn ul {
+    display: table;
+    height: 100%;
+  }
+  /* line 30, ../scss/swipeList.sass */
+  .swipe-list .list .list-btn li {
+    color: #fff;
+    display: table-cell;
+    height: 100%;
+    padding: 10px;
+    vertical-align: middle;
+  }
+
+  /* theme-swipe-list */
+  /* line 40, ../scss/swipeList.sass */
+  .theme-swipe-list.is-left .list-btn {
+    right: auto;
+    left: 0;
+  }
+  /* line 44, ../scss/swipeList.sass */
+  .theme-swipe-list .list {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+  /* line 49, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-cell {
+    display: table-cell;
+  }
+  /* line 52, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-body {
+    border: solid 1px #e0e0e0;
+  }
+  /* line 55, ../scss/swipeList.sass */
+  .theme-swipe-list .list .titile {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: solid 2px #90a4ae;
+  }
+  /* line 62, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-btn {
+    height: 100%;
+  }
+  /* line 65, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-btn li:nth-child(1) {
+    background: #fb8c00;
+  }
+  /* line 67, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-btn li:nth-child(2) {
+    background: #546e7a;
+  }
+  /* line 69, ../scss/swipeList.sass */
+  .theme-swipe-list .list .list-btn li:nth-child(3) {
+    background: #dd191d;
+  }
+}

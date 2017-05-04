@@ -1,0 +1,80 @@
+/* line 5, ../scss/scaffolds.scss */
+body {
+  background-color: #fff;
+  color: #222;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* line 13, ../scss/scaffolds.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* line 19, ../scss/scaffolds.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 14px;
+  overflow: auto;
+}
+
+/* line 26, ../scss/scaffolds.scss */
+a {
+  color: #333;
+}
+/* line 28, ../scss/scaffolds.scss */
+a:visited {
+  color: #666;
+}
+/* line 31, ../scss/scaffolds.scss */
+a:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+/* line 39, ../scss/scaffolds.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 44, ../scss/scaffolds.scss */
+#notice {
+  color: green;
+}
+
+/* line 48, ../scss/scaffolds.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 54, ../scss/scaffolds.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 61, ../scss/scaffolds.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 71, ../scss/scaffolds.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

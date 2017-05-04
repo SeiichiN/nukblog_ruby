@@ -1,0 +1,82 @@
+// Place all the styles related to the gazos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+ul.action {
+	list-style-type: none;
+	padding-left: 0;
+	a.fa {
+		text-decoration: none;
+		font-size: 30px;
+		margin-right: 10px;
+		color: #666;
+	}
+}
+header {
+	z-index: 20;
+}
+.list-header {
+    margin-bottom: 5px;
+	a.new_gazo_button {
+		float: left;
+        display: block;
+        &:hover {
+            background-color: #fff;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        &:action {
+        }
+        //		height: 40px;
+    }
+
+	p#shoshiki {
+		width: 50px;
+		float: left;
+		margin: 5px 0 0 40px;
+		padding: 5px 10px;
+		text-align: center;
+		&:hover {
+			color: #fff;
+			background-color: #666;
+			cursor: pointer;
+		}
+	}
+}
+p.image,
+dd.image {
+	width: 245px;
+	height: auto;
+	margin-left: 0;
+}
+#outputList {
+	width: 150px;
+//	border: solid 1px #666;
+}
+@media screen and ( min-width: 482px){
+	.list {
+		.list-btn {
+			ul {
+				li {
+					a {
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and ( max-width: 481px){
+	header {
+		z-index: 20;
+	}
+}

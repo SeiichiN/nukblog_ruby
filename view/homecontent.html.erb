@@ -1,0 +1,29 @@
+<%# coding: utf-8 %>
+
+<h2 class="home-title">
+  <%= @this_blog.title %>
+</h2>
+
+<p>
+  <%= @this_blog.to_html %>
+</p>
+
+<p>
+  <strong>カテゴリ:</strong>
+  <%= @this_blog.category %>
+</p>
+
+<p>
+	<strong>タグ:</strong>
+	<%= @this_blog.tag %>
+</p>
+
+<p>
+	<strong>Count:</strong>
+	<%= @this_blog.count %>
+</p>
+
+<p class="action">
+  <a href="./show.rb?id=<%= @this_blog.id %>"><i class="fa fa-picture-o fa-1x"></i></a>
+</p>
+

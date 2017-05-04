@@ -1,0 +1,37 @@
+<article>
+
+<h1>Listing gazos</h1>
+<div class="list-header clearfix">
+  <a href="newGazo.rb"><button type="button" class="new_gazo_button button44_submit"></button></a>
+  <p id="shoshiki">書式:[[/gazos/show_image/<NO>]]</p>
+</div>
+
+<div class="swipe-list theme-swipe-list">
+  <% @gazos.each do |gazo| %>
+    <div class="list js-swipeList clearfix">
+      <%# 画面本体部分 %>
+      <div class="list-body js-swipeListTarget">
+        <div class="list-contents list-cell <%= cycle('list-line-odd', 'list-line-even') %>">
+          <dl class="clearfix">
+            <dt class="fileInfo">
+                <%= "id:#{gazo.id}" %> <%# gazo.file %><br>
+              <%= gazo.comment %><br>
+              <%#= gazo.ctype %></dt>
+            <dd class="image"><%= link_to image_tag(url_for(controller: :ctrl, action: :show_image, id: gazo.id)), gazo %></dd>
+          </dl>
+        </div>
+        <div class="list-arrow list-cell"><i class="fa fa-angle-double-left"></i></div>
+      </div>
+      <%# 以下、右側リスト部分 %>
+      <div class="list-btn js-swipeListBtn">
+        <ul class="action clearfix">
+          <li><%= link_to '', gazo, class: 'fa fa-picture-o' %></li>
+          <li><%= link_to '', edit_gazo_path(gazo), class: 'fa fa-edit' %></li>
+          <li><%= link_to '', gazo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+</article>

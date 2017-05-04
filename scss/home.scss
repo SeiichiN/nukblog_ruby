@@ -1,0 +1,140 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+.archive {
+    p.arc-create:before {
+        content: '作成:';
+    }
+    p.arc-update:before {
+        content: '更新:';
+    }
+}
+.list-line-even {
+	background-color: #e0f8f8;
+}
+.list-line-odd {
+	background-color: #f5e8f5;
+}
+
+@media screen and ( max-width: 480px){
+	article.archive {
+		#title-line {
+			display: none;
+		}
+		dl {
+			dt.arc-title {
+				float: none;
+				width: 100%;
+			}
+			dd.des1{
+				display: table;
+				border-collapse: separate;
+				border-spacing: 5px 0;
+				p.arc-category {
+					background: url("../img/category.png") no-repeat;
+				}
+				p.arc-tag {
+					background: url("../img/tag.png") no-repeat;
+				}
+				p.arc-category,
+				p.arc-tag {
+					float: none;
+					width: auto;
+					background-position: left 0px;
+					padding-left: 16px;
+					margin-left: 5px;
+					font-size: 0.8em;
+					display: table-cell;
+				}
+			}
+			dd.des2 {
+				width: 10%;
+                float: left;
+            }
+            dd.des3 {
+                width: 90%;
+                float:left;
+                margin-top: 5px;
+				p.arc-create,
+				p.arc-update {
+					float: left;
+					width: 45%;
+					margin-left: 10px;
+					font-size: 0.6em;
+                    line-height: 1.4;
+				}
+			}
+		}
+	}
+}
+@media screen and ( min-width: 481px){
+
+    .archive {
+	
+	    #title-line {
+		    font-size: 0;
+		    button {
+			    box-sizing: border-box;
+			    display: inline-block;
+		    }
+		    button.title_title {
+			    width: 53.5%;
+		    }
+		    button.title_cathegory,
+		    button.title_tag {
+			    width: 12.5%;
+		    }
+		    button.title_count {
+			    width: 5%;
+		    }
+		    button.title_create,
+            button.title_update {
+			    width: 8%;
+		    }
+	    }
+        
+	    dl, dt, dd, p {
+		    margin: 0;
+		    padding: 0;
+	    }
+	    dt,
+	    dd {
+		    line-height: 1.6em;
+	    }
+	    
+	    dt.arc-title {
+		    float: left;
+		    width: 54%;
+	    }
+	    dd.des1 {
+		    float: left;
+		    width: 25%;
+	    }
+	    dd.des2 {
+		    float: left;
+		    width: 3%;
+	    }
+	    dd.des3 {
+		    float: right;
+		    width: 15%;
+	    }
+	    .arc-title {
+		    padding-left: 5px;
+	    }
+	    .arc-category,
+	    .arc-tag,
+	    .arc-count {
+		    font-size: 0.8em;
+	    }
+        .arc-create,
+	    .arc-update {
+            font-size: 0.6em;
+        }
+    }
+}

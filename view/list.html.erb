@@ -1,0 +1,51 @@
+<%# coding: utf-8 %>
+
+<article>
+            
+    <% i = 0 %>
+    <div class="swipe-list theme-swipe-list">
+        <% @results.each do |row| %>
+            <% id = row['id'] %>
+            <% i = i + 1 %>
+            <% if(i % 2 == 0)
+                evenodd = 'list-line-even'
+            else
+                evenodd = 'list-line-odd'
+            end %>
+            <div class="list js-swipeList clearfix">
+                <%# 画面本体部分 %>
+                <div class="list-body js-swipeListTarget">
+                    <div class="list-contents list-cell <%= evenodd %>">
+    				    <div class="title"><a href="./show.rb?id=<%= id %>"><%= row['title'] %></a></div>
+                        <div class="des1">
+                            <p class="category"><%= row['category'] %></p>
+                            <p class="tag"><%= row['tag'] %></p>
+                        </div>
+                        <div class="des2">
+                            <p class="count"><%= row['count'] %></p>
+    				        <p class="date">
+                                <%= row['created_at'].strftime("%Y") %>
+                                <%= row['created_at'].strftime("%m-%d") %>
+                                <%= row['created_at'].strftime("%H:%M") %>
+                            </p>
+                        </div><!-- .des2 -->
+                    </div><!-- .list-contents .list-cell -->
+                    <div class="list-arrow list-cell"><i class="fa fa-angle-double-left"></i></div>
+                </div><!-- .list-body .js-swipeListTarget -->
+                <%# 以下、右側リスト部分 %>
+                <div class="list-btn js-swipeListBtn">
+                    <ul class="action clearfix">
+                        <li><a href="show.rb?id=<%= id %>"><img src="img/pic.svg" alt="show" width="24px" height="24px"></a></li>
+                        <li><a href="edit.rb?id=<%= id %>"><img src="img/edit.svg" alt="edit" width="24px" height="24px"></a></li>
+                        <li><a href="suredelete.rb?id=<%= id %>"><img src="img/docro.svg" alt="delete" width="24px" height="24px"></a></li>
+                    </ul>
+                </div><!-- .list-btn .js-swipeListBtn -->
+            </div><!-- .list .js-swipeList .clearfix -->
+        <% end %>
+    </div><!-- .swipe-list .theme-swipe-list -->
+    <br>
+    
+    <%# link_to 'New Entry', new_entry_path %>
+    
+</article>
+

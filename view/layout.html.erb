@@ -1,0 +1,67 @@
+<%# coding: utf-8 %>
+
+<%
+puts 'Content-Type: text/html; charset=utf-8'
+puts ''
+%>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+    <title>My開発メモ</title>
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/entries.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/gazos.css">
+    <link rel="stylesheet" href="css/swipeList.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+  <%# csrf_meta_tags %>
+</head>
+<body>
+    <div class="main">
+	    <header class="clearfix">
+
+		    <h1><img src="img/memo.png" alt="">My開発メモ</h1>
+
+		    <nav class="header-menus" id="slide_menu">
+			    <ul>
+				    <li class="nav-icon"><a href="index.rb"><img src="img/home.png" alt="home"></a></li>
+				    <li class="nav-icon"><a href="archive.rb"><img src="img/archive.png" alt="archive"></a></li>
+				    <li class="nav-icon"><a href="#"><img src="img/search.png" alt="search"></a></li>
+				    <li class="nav-icon"><a href="info.rb"><img src="img/info.png" alt="info"></a></li>
+				    <li class="nav-icon"><a href="add.rb"><img src="img/write.png" alt="write"></a></li>
+				    <li class="nav-icon"><a href="list.rb"><img src="img/manage.png" alt="manage"></a></li>
+				    <li class="gazo-icon"><a href="gazolist.rb"><img src="img/ichiran.png" alt="ichiran"></a></li>
+			    </ul>
+		    </nav>
+            
+		    <button id="button"><i class="fa fa-bars fa-2x"></i></button>
+
+	    </header>
+
+	    <p class="notice"><%= @notice %></p>
+
+	    <%= @content  %>
+
+	    <div id="page-top" class="page-top">
+		    <p><a id="move-page-top" class="move-page-top">
+			    <i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+	    </div>
+        
+	    <footer>
+            <% @current = Time.now %>
+		    <small>NukBlog Ruby-version 0.1 &copy; 2017 - <%= @current.strftime('%Y') %> Billie's Works</small>
+	    </footer>
+    </div><!-- main -->
+
+    <script src="js/slide_menu.js"></script>
+    <script src="js/page_top.js"></script>
+    <script src="js/swipe_list.js"></script>
+    <script src="js/jquery-swipeList.js"></script>
+</body>
+</html>

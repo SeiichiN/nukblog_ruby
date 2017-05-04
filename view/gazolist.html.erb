@@ -1,0 +1,50 @@
+<%# coding: utf-8 %>
+<article>
+
+<h1>Listing gazos</h1>
+<div class="list-header clearfix">
+  <a href="gazonew.rb" class="new_gazo_button"><button type="button" class="button44_submit">New Gazo</button></a>
+  <p id="shoshiki">[[/gazos/show_image/<No>]]</p>
+</div>
+
+<% i = 0 %>
+<div class="swipe-list theme-swipe-list">
+  <% @results.each do |gazo| %>
+    <% id = gazo['id'] %>
+    <% image = Base64.encode64(gazo['image']) %>
+    <%# image = gazo['image'].force_encoding("UTF-8") %>
+    <% i = i + 1 %>
+    <% if (i % 2 == 0)
+        evenodd = 'list-line-even'
+    else
+        evenodd = 'list-line-odd'
+    end %>
+    <div class="list js-swipeList clearfix">
+      <%# 画面本体部分 %>
+      <div class="list-body js-swipeListTarget">
+        <div class="list-contents list-cell <%= evenodd %>">
+          <dl class="clearfix">
+            <dt class="fileInfo">
+                <%= "id:#{id}" %> <%# gazo.file %><br>
+              <%= gazo['comment'] %><br>
+              <%= gazo['ctype'] %></dt>
+            <dd class="image">
+              <img src="data:<%= gazo['ctype'] %>;base64, <%= %|#{image}| %>" alt="">
+            </dd>
+          </dl>
+        </div>
+        <div class="list-arrow list-cell"><i class="fa fa-angle-double-left"></i></div>
+      </div>
+      <%# 以下、右側リスト部分 %>
+      <div class="list-btn js-swipeListBtn">
+        <ul class="action clearfix">
+          <li><a href="gazoshow.rb?id=<%= id %>"><i class="fa fa-picture-o"></i></a></li>
+          <li><a href="gazoedit.rb?id=<%= id %>"><i class="fa fa-edit"></i></a></li>
+          <li><a href="gazodelete.rb?id=<%= id %>"><i class="fa fa-trash"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+</article>

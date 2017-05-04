@@ -1,0 +1,35 @@
+<%# -*- coding: utf-8 -*- %>
+<%# 画像を１件表示する %>
+
+<% gazo = @results.first %>
+<%# image = Base64.encode64(gazo['image']) %>
+<% image = gazo['image'] %>
+
+<article>
+
+<p>id: <%= gazo['id'] %></p>
+<p>
+  <strong>File:</strong>
+  <%= gazo['file'] %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= gazo['comment'] %>
+</p>
+
+<p>
+  <strong>Ctype:</strong>
+  <%= gazo['ctype'] %>
+</p>
+
+<p class="image">
+  <img src="data:<%= gazo['ctype'] %>;base64, <%= %|#{image}| %>" alt="" id="<%= gazo['id'] %>">
+</p>
+
+<p class="action">
+  <a href="gazoedit.rb?id=<%= gazo['id'] %>"><i class="fa fa-edit fa-2x"></i></a>
+  <a href="gazolist.rb"><i class="fa fa-list fa-2x"></i></a>
+<p>
+	
+</article>

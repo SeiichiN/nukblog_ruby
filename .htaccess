@@ -1,0 +1,5 @@
+Options +ExecCGI
+AddHandler cgi-script .cgi .pl .rb
+# AddHandler application/x-httpd-eruby .rhtml .erb
+# Action application/x-httpd-eruby ruby.cgi
+
