@@ -58,7 +58,7 @@ if ((mode == 'new') || (mode == 'update'))
   # ===================================================
   
   # gazo_manager.setGazoに gazoインスタンスとmodeをわたす。
-#  gazo_manager.setGazo(gazo, mode)
+  gazo_manager.setGazo(gazo, mode)
 
 else
   gazo_manager.listAllGazos
@@ -76,10 +76,10 @@ encimage = Base64.strict_encode64(gazo.image)
 #encimage = gazo.image
 # ====================================================
 # うまく表示できた！
-print "Content-Type: text/html; charset=utf-8\n\n"
-print "<html><body>"
-print %|<img src="images/#{gazo.file}" alt="">|
-print "</html></body>"
+#print "Content-Type: text/html; charset=utf-8\n\n"
+#print "<html><body>"
+#print %|<img src="images/#{gazo.file}" alt="">|
+#print "</html></body>"
 # ====================================================
 
 # 確認用出力

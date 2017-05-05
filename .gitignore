@@ -60,3 +60,7 @@ view/trush/
 database.yml
 *.rb_org
 images/
+*_org.html.erb
+.#*
+#*.??#
+#setGazoData.rb#

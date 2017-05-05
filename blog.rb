@@ -1,10 +1,9 @@
 #!/usr/bin/ruby
 # -*- coding: utf-8 -*-
 require 'date'
-require 'mysql2'
 require 'erb'
 require './hikidoc'
-require 'yaml'
+require './dbase.rb'
 
 # ブログ1件分のクラスをつくる
 class Blog
@@ -41,23 +40,7 @@ class Blog
 
 end
 
-class BlogManager
-  def initialize
-    db = YAML.load_file("database.yml")
-    
-    # データベースに接続
-    @client = Mysql2::Client.new(
-      :host => "#{db['db']['host']}",
-      :username => "#{db['db']['username']}",
-      :password => "#{db['db']['password']}",
-      :socket => "#{db['db']['socket']}",
-      :encoding => "#{db['db']['encoding']}",
-      :database => "#{db['db']['database']}"
-    )
-    @table_name = "#{db['blog']['table']}"
-  end
-
-  attr_accessor :client, :table_name
+class BlogManager < BaseDb
 
   def render_view(template)
     rhtml = ERB.new(File.read("view/#{template}.html.erb"))
