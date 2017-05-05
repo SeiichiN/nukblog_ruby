@@ -59,4 +59,4 @@ view/bakfile.erb
 view/trush/
 database.yml
 *.rb_org
-
+images/

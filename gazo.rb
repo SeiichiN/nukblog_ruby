@@ -72,19 +72,40 @@ class GazoManager
   def setGazo(gazo, mode)
     # mysqlに登録する
     if (mode == 'new')
+      # idを指定せず、REPLACEを使う
+      # REPLACE -- INSERT と UPDATE の両方の働きをする。
+      # cast -- MySQLの関数。datetime型に変換する。
       query = %|REPLACE INTO #{@gazo_table} (
             file, comment, ctype, image, created_at, updated_at)
             values (?, ?, ?, ?,
                 cast("#{gazo.created_at}" as datetime),
                 cast("#{gazo.updated_at}" as datetime))|
       statement = @gazo_client.prepare(query)
-      results = statement.execute(gazo.file, gazo.comment, gazo.ctype,
-                                  gazo.image)
+      results = statement.execute(gazo.file, gazo.comment,
+                                  gazo.ctype, gazo.image)
       
       @notice = "登録しました。"
+    elsif (mode == 'update')
+      # idを指定しているので、UPDATEしてくれる。
+      # その分、上の処理よりも、プレースホルダーの数が多い。
+      query = %|REPLACE INTO #{@gazo_table} (
+            id, file, comment, ctype, image, created_at, updated_at)
+            values (?, ?, ?, ?, ?,
+                cast("#{gazo.created_at}" as datetime),
+                cast("#{gazo.updated_at}" as datetime))|
+      statement = @gazo_client.prepare(query)
+      results = statement.execute(gazo.id, gazo.file, gazo.comment,
+                                  gazo.ctype, gazo.image)
+      
+      @notice = "更新しました。"
     end
 
     listAllGazos
+  end
+
+  def editGazo(id)
+    selectGazo(id)
+    print write_html('gazoedit')
   end
 
   def showGazo(id)
@@ -92,11 +113,20 @@ class GazoManager
     print write_html('gazoshow')
   end
 
+  def viewGazo(id)
+    query = %|select ctype, image from #{gazo_table} where id = ?|
+    statement = @gazo_client.prepare(query)
+    @results = statement.execute(id)
+
+    print render_view('gazoview')
+  end
+
   def selectGazo(id)
     if id.integer?
-      query = %|select * from #{@gazo_table} where id = #{id}|
+      query = %|select * from #{@gazo_table} where id = ?|
       begin
-        @results = @gazo_client.query(query)
+        statement = @gazo_client.prepare(query)
+        @results = statement.execute(id)
         sonzai = TRUE
       rescue => e
         @notice = "そのデータは存在しません。"
@@ -104,6 +134,14 @@ class GazoManager
       end
       return sonzai
     end
+  end
+
+  def deleteGazo(id)
+    query = %|delete from #{@gazo_table} where id = ?|
+    statement = @gazo_client.prepare(query)
+    statement.execute(id)
+    @notice = "削除しました。"
+    listAllGazos
   end
 
   # テーブルの初期化とフィールドの設定

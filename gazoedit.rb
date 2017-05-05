@@ -12,7 +12,7 @@ id_moji = cgi['id']
 
 if id_moji =~ /^[0-9]+$/
   id = id_moji.to_i
-  sonzai = gazo_manager.showGazo(id)
+  sonzai = gazo_manager.editGazo(id)
 else
   gazo_manager.listAllGazo
 end

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # gazonew.html.erbからのデータを受け取るプログラム。
+# gazoedit.html.erbからも受け取る
 
 require './gazo.rb'
 require 'cgi'
@@ -12,7 +13,7 @@ require 'base64'
 cgi = CGI.new
 
 gazo = Gazo.new(0, '', '', '', '', '', '')
-gazo.id = cgi['id']
+gazo.id = Integer(cgi['id'])
 #id = nil
 gazo.file = CGI.escapeHTML(cgi['filename'])
 gazo.comment = CGI.escapeHTML(cgi['comment'])
@@ -27,6 +28,13 @@ gazo.updated_at = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 mode = cgi['mode']
 
 if ((mode == 'new') || (mode == 'update'))
+
+  # imagesフォルダに画像ファイルを保存する。
+  File.open "images/#{gazo.file}", 'wb' do |f|
+    f.write gazo.image
+  end
+
+
 
   gazo_manager = GazoManager.new
 
@@ -50,7 +58,7 @@ if ((mode == 'new') || (mode == 'update'))
   # ===================================================
   
   # gazo_manager.setGazoに gazoインスタンスとmodeをわたす。
-  gazo_manager.setGazo(gazo, mode)
+#  gazo_manager.setGazo(gazo, mode)
 
 else
   gazo_manager.listAllGazos
@@ -68,10 +76,10 @@ encimage = Base64.strict_encode64(gazo.image)
 #encimage = gazo.image
 # ====================================================
 # うまく表示できた！
-#print "Content-Type: text/html; charset=utf-8\n\n"
-#print "<html><body>"
-#print "<img src='data:#{ctype};base64,#{image}'>"
-#print "</html></body>"
+print "Content-Type: text/html; charset=utf-8\n\n"
+print "<html><body>"
+print %|<img src="images/#{gazo.file}" alt="">|
+print "</html></body>"
 # ====================================================
 
 # 確認用出力

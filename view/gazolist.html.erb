@@ -25,7 +25,7 @@
         <div class="list-contents list-cell <%= evenodd %>">
           <dl class="clearfix">
             <dt class="fileInfo">
-                <%= "id:#{id}" %> <%# gazo.file %><br>
+                <div class="gazo-id"><%= "id:#{id}" %> </div>
               <%= gazo['comment'] %><br>
               <%= gazo['ctype'] %></dt>
             <dd class="image">
@@ -40,7 +40,7 @@
         <ul class="action clearfix">
           <li><a href="gazoshow.rb?id=<%= id %>"><i class="fa fa-picture-o"></i></a></li>
           <li><a href="gazoedit.rb?id=<%= id %>"><i class="fa fa-edit"></i></a></li>
-          <li><a href="gazodelete.rb?id=<%= id %>"><i class="fa fa-trash"></i></a></li>
+          <li><a href="gazodelete.rb?id=<%= id %>" onClick="disp(<%= id %>); "><i class="fa fa-trash"></i></a></li>
         </ul>
       </div>
     </div>
@@ -48,3 +48,5 @@
 </div>
 
 </article>
+
+<script src="js/sure.js"></script>

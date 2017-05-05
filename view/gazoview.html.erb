@@ -1,0 +1,15 @@
+<%# -*- coding: utf-8 -*- %>
+<%# gazoview.html.erb -- 画像そのものを表示する %>
+
+<%# p @results.first %>
+<% gazo = @results.first %>
+<% image = Base64.strict_encode64(gazo['image']) %>
+
+<% print "Content-Type: text/html; charset=utf-8\n\n" %>
+
+<%# p image %>
+<%# print "Content-Type: #{gazo['ctype']}\n\n" %>
+
+  <img src="data:<%= gazo['ctype'] %>;base64, <%= %|#{image}| %>" alt="">
+
+

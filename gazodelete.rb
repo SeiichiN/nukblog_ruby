@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 # 1件データの削除
 
-require './blog.rb'
+require './gazo.rb'
 require 'cgi'
 
-blog_manager = BlogManager.new
+gazo_manager = GazoManager.new
 cgi = CGI.new
 
 id = cgi['id'].to_i
 
-blog_manager.deleteBlog(id)
+gazo_manager.deleteGazo(id)
+
+gazo_manager.gazo_client.close
+

@@ -1,0 +1,47 @@
+<%# coding: utf-8 %>
+
+<%# id = @resuts.first['id'] %>
+<% gazo = @results.first %>
+<% image = Base64.encode64(gazo['image']) %>
+
+<article>
+
+  <h1>Edit gazo</h1>
+
+  <form class="new_gazo" action="setGazoData.rb" method="post" enctype="multipart/form-data">
+    <div class="field">
+        <label for="id">ID:<%= gazo['id'] %></label>
+        <input type="hidden" name="id" id="id" value="<%= gazo['id'] %>">
+    </div>
+  
+    <div class="field">
+      <label for="filename">File</label><br>
+      <input type="text" name="filename" id="gazo_file" value="<%= gazo['file'] %>">
+    </div>
+    <div class="field">
+      <label for="comment">Comment</label><br>
+      <input type="text" name="comment" id="comment" value="<%= gazo['comment'] %>">
+    </div>
+    <div class="field image" id="gazo_data">
+      <label for="file">Image</label><br>
+      <input type="file" name="file" id="file">
+    </div>
+    <div class="field btn44aria">
+      <label for="outputList">アップ画像</label><br>
+        <img id="outputList" src="data:<%= gazo['ctype'] %>;base64, <%= %|#{image}| %>" alt="アップ画像"><br>
+        <span id="file_size"></span>
+    </div>
+    <input type="hidden" name="mode" value="update">
+    <div class="actions btn44aria">
+      <input type="submit" value="アップロード">
+    </div>
+  </form>
+  
+  <p class="action">
+	<a href="gazolist.rb"><i class="fa fa-list fa-2x"></i></a>
+  </p>
+  
+</article>
+
+<script src="js/file_upload.js"></script>
+

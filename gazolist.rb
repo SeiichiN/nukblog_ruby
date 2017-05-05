@@ -6,3 +6,5 @@ require './gazo.rb'
 gazo_manager = GazoManager.new
 
 gazo_manager.listAllGazos
+
+gazo_manager.gazo_client.close
