@@ -75,7 +75,6 @@ class BlogManager < BaseDb
     @results.each do |row|
       id = row['id'].to_i
       selectBlog(id)
-#      @content = render_view('homecontent')
       @homecontent << render_view('homecontent')
     end
 
@@ -89,7 +88,7 @@ class BlogManager < BaseDb
     query = %|select * from #{@table_name} order by #{genre} #{order}| 
     @results = @client.query(query)
 
-    #@cookie = {"name" => genre, "value" => order}
+    # cookie -- {"name" => genre, "value" => order}
     @cookie = cookie
     
     print write_html('archive')
