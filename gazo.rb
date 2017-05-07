@@ -1,11 +1,10 @@
 #!/usr/bin/perl
 # -*- coding: utf-8 -*-
 require 'date'
-require 'mysql2'
 require 'erb'
 require './hikidoc'
 require 'base64'
-require 'yaml'
+require './dbase.rb'    
 
 # 画像1件ぶんのクラスをつくる
 class Gazo
@@ -25,23 +24,7 @@ class Gazo
 end
 
 
-class GazoManager
-  def initialize
-    db = YAML.load_file("database.yml")
-    
-    # データベースに接続
-    @gazo_client = Mysql2::Client.new(
-      :host => "#{db['db']['host']}",
-      :username => "#{db['db']['username']}",
-      :password => "#{db['db']['password']}",
-      :socket => "#{db['db']['socket']}",
-      :encoding => "#{db['db']['encoding']}",
-      :database => "#{db['db']['database']}"
-    )
-    @gazo_table = "#{db['gazo']['table']}"
-  end
-
-  attr_accessor :gazo_client, :gazo_table
+class GazoManager < BaseDb
 
   def render_view(template)
     rhtml = ERB.new(File.read("view/#{template}.html.erb"))
@@ -55,14 +38,14 @@ class GazoManager
   
   def listAllGazos
     query = %|select * from gazos order by id asc;|
-    @results = @gazo_client.query(query)
+    @results = @client.query(query)
 
     write_html('gazolist')
   end
 
   def newGazo
     # 最新のidを求める
-    results = @gazo_client.query("select * from #{@gazo_table} order by id desc limit 1;")
+    results = @client.query("select * from #{@gazo_table} order by id desc limit 1;")
 
     @gazo_newid = results.first['id'].to_i + 1
 
@@ -80,7 +63,7 @@ class GazoManager
             values (?, ?, ?, ?,
                 cast("#{gazo.created_at}" as datetime),
                 cast("#{gazo.updated_at}" as datetime))|
-      statement = @gazo_client.prepare(query)
+      statement = @client.prepare(query)
       results = statement.execute(gazo.file, gazo.comment,
                                   gazo.ctype, gazo.image)
       
@@ -93,7 +76,7 @@ class GazoManager
             values (?, ?, ?, ?, ?,
                 cast("#{gazo.created_at}" as datetime),
                 cast("#{gazo.updated_at}" as datetime))|
-      statement = @gazo_client.prepare(query)
+      statement = @client.prepare(query)
       results = statement.execute(gazo.id, gazo.file, gazo.comment,
                                   gazo.ctype, gazo.image)
       
@@ -114,8 +97,8 @@ class GazoManager
   end
 
   def viewGazo(id)
-    query = %|select ctype, image from #{gazo_table} where id = ?|
-    statement = @gazo_client.prepare(query)
+    query = %|select ctype, image from #{@gazo_table} where id = ?|
+    statement = @client.prepare(query)
     @results = statement.execute(id)
 
     print render_view('gazoview')
@@ -125,7 +108,7 @@ class GazoManager
     if id.integer?
       query = %|select * from #{@gazo_table} where id = ?|
       begin
-        statement = @gazo_client.prepare(query)
+        statement = @client.prepare(query)
         @results = statement.execute(id)
         sonzai = TRUE
       rescue => e
@@ -138,7 +121,7 @@ class GazoManager
 
   def deleteGazo(id)
     query = %|delete from #{@gazo_table} where id = ?|
-    statement = @gazo_client.prepare(query)
+    statement = @client.prepare(query)
     statement.execute(id)
     @notice = "削除しました。"
     listAllGazos
@@ -148,7 +131,7 @@ class GazoManager
   def initGazo
     # もしテーブルが存在していたら、削除する。
     query = %|drop table if exists #{@gazo_table}|
-    results = @gazo_client.quety(query)
+    results = @client.quety(query)
 
     # テーブルgazosを作成する
     query = %|create table `#{@gazo_table}` (
@@ -161,7 +144,7 @@ class GazoManager
       `updated_at` datetime,
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;|
-    results = @gazo_client.query(query)
+    results = @client.query(query)
     @notice = "データベースを初期化しました。"
   end
 end

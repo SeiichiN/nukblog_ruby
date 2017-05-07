@@ -2,7 +2,6 @@
 
 <%# id = @resuts.first['id'] %>
 <% gazo = @results.first %>
-<% image = Base64.encode64(gazo['image']) %>
 
 <article>
 
@@ -28,7 +27,7 @@
     </div>
     <div class="field btn44aria">
       <label for="outputList">アップ画像</label><br>
-        <img id="outputList" src="data:<%= gazo['ctype'] %>;base64, <%= %|#{image}| %>" alt="アップ画像"><br>
+        <img id="outputList" src="images/<%= gazo['file'] %>" alt="アップ画像"><br>
         <span id="file_size"></span>
     </div>
     <input type="hidden" name="mode" value="update">

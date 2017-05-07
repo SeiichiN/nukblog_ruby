@@ -1,21 +1,36 @@
 <%# coding: utf-8 %>
 
+<%
+val = {'title' => 0, 'category' => 0, 'tag' => 0, 'count' => 0, 'created_at' => 0, 'updated_at' => 0,}
+
+# 'title', 'category', 'tag', 'count', ' created_at', 'updated_at'
+ckname = @cookie['name']
+if @cookie['value'] == 'asc'
+    ckvalue = 0
+elsif @cookie['value'] == 'desc'
+    ckvalue = 1
+end
+
+val[ckname] = ckvalue
+
+%>
+
 <article class="archive">
 	<h2>アーカイブ</h2>
 
 	<%# タイトル行の出力 %>
 	<div id="title-line" class="clearfix">
         <form action="sort_select.rb" method="post">
-		    <button class="title_title" type="submit" name="title" value="1">Title</button>
-		    <button class="title_cathegory" type="submit" name="category" value="1">Category</button>
-		    <button class="title_tag" type="submit" name="tag" value="1">Tag</button>
-		    <button class="title_count" type="submit" name="count" value="1">C</button>
-		    <button class="title_create" type="submit" name="created_at" value="1">Create</button>
-		    <button class="title_update" type="submit" name="updated_at" value="1">Update</button>
+		    <button class="title_title" type="submit" name="title" value="<%= (val['title'] + 1) % 2 %>">Title</button>
+		    <button class="title_cathegory" type="submit" name="category" value="<%= (val['category'] + 1) % 2 %>">Category</button>
+		    <button class="title_tag" type="submit" name="tag" value="<%= (val['tag'] + 1) % 2 %>">Tag</button>
+		    <button class="title_count" type="submit" name="count" value="<%= (val['count'] + 1) % 2 %>">C</button>
+		    <button class="title_create" type="submit" name="created_at" value="<%= (val['created_at'] + 1) % 2 %>">Create</button>
+		    <button class="title_update" type="submit" name="updated_at" value="<%= (val['updated_at'] + 1) % 2 %>">Update</button>
         </form>
 	</div>
 	
-	<%# 本文の出力 %>
+    <%# 本文の出力 %>
     <% i = 0 %>
 	<% @results.each do |row| %>
         <% id = row['id'] %>

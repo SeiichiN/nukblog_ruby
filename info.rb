@@ -6,4 +6,6 @@ require './blog.rb'
 
 blog_manager = BlogManager.new
 
-sonzai = blog_manager.infoBlog
+blog_manager.infoBlog
+
+blog_manager.client.close

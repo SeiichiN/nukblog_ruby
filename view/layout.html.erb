@@ -1,8 +1,13 @@
 <%# coding: utf-8 %>
 
 <%
-puts 'Content-Type: text/html; charset=utf-8'
-puts ''
+print 'Content-Type: text/html; charset=utf-8\n'
+if @cookie
+    genre = @cookie["name"]
+    order = @cookie["value"]
+    print "Set-Cookie: name=#{genre}, value=#{order}\n\n"
+end
+    
 %>
 
 <!DOCTYPE html>

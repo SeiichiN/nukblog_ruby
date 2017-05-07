@@ -1,10 +1,9 @@
 #!/usr/bin/ruby
 # -*- coding: utf-8 -*-
 require 'date'
-require 'mysql2'
 require 'erb'
 require './hikidoc'
-require 'yaml'
+require './dbase.rb'
 
 # ブログ1件分のクラスをつくる
 class Blog
@@ -41,23 +40,11 @@ class Blog
 
 end
 
-class BlogManager
-  def initialize
-    db = YAML.load_file("database.yml")
-    
-    # データベースに接続
-    @client = Mysql2::Client.new(
-      :host => "#{db['db']['host']}",
-      :username => "#{db['db']['username']}",
-      :password => "#{db['db']['password']}",
-      :socket => "#{db['db']['socket']}",
-      :encoding => "#{db['db']['encoding']}",
-      :database => "#{db['db']['database']}"
-    )
-    @table_name = "#{db['blog']['table']}"
-  end
-
-  attr_accessor :client, :table_name
+# BlogManager -- データベース関連の処理を担当する。
+#   BaseDbクラスを継承する。
+# BaseDb -- BaseDbクラスは、データベースへの接続を担当し、
+#   そのためのインスタンスを生成する。
+class BlogManager < BaseDb
 
   def render_view(template)
     rhtml = ERB.new(File.read("view/#{template}.html.erb"))
@@ -95,9 +82,15 @@ class BlogManager
     print write_html('home')
   end
 
-  def archiveBlog(ganle = 'updated_at', order = 'desc')
-    query = %|select * from #{@table_name} order by #{ganle} #{order}|
+  def archiveBlog(cookie)
+    genre = cookie["name"]
+    order = cookie["value"]
+
+    query = %|select * from #{@table_name} order by #{genre} #{order}| 
     @results = @client.query(query)
+
+    #@cookie = {"name" => genre, "value" => order}
+    @cookie = cookie
     
     print write_html('archive')
   end
