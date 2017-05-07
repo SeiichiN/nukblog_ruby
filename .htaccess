@@ -3,3 +3,17 @@ AddHandler cgi-script .cgi .pl .rb
 # AddHandler application/x-httpd-eruby .rhtml .erb
 # Action application/x-httpd-eruby ruby.cgi
 
+###
+#AuthType Basic
+#AuthName "Input your ID and Password."
+#AuthUserFile /home/se-ichi/public_html/nukblog_ruby/.htpasswd
+#require valid-user
+
+###
+<Files ~ (edit.rb|add.rb|delete.rb|list.rb|gazolist.rb|gazonew.rb|gazoshow.rb|gazoedit.rb|gazodelete.rb)>
+AuthType Digest
+AuthName "Digest Auth"
+AuthUserFile /home/se-ichi/public_html/nukblog_ruby/.htpasswd
+require valid-user
+</Files>
+

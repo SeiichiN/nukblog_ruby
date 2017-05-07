@@ -64,3 +64,6 @@ images/
 .#*
 #*.??#
 #setGazoData.rb#
+*htaccess*
+*htpasswd*
+

@@ -13,4 +13,4 @@ gazo_mng = GazoManager.new
 
 gazo_mng.viewGazo(id)
 
-gazo_mng.gazo_client.close
+gazo_mng.client.close

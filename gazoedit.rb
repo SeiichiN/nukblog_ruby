@@ -16,5 +16,5 @@ if id_moji =~ /^[0-9]+$/
 else
   gazo_manager.listAllGazo
 end
-gazo_manager.gazo_client.close
+gazo_manager.client.close
 

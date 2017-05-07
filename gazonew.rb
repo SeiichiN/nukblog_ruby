@@ -8,4 +8,4 @@ gazo_manager = GazoManager.new
 
 gazo_manager.newGazo
 
-gazo_manager.gazo_client.close
+gazo_manager.client.close

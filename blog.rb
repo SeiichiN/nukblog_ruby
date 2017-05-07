@@ -40,6 +40,10 @@ class Blog
 
 end
 
+# BlogManager -- データベース関連の処理を担当する。
+#   BaseDbクラスを継承する。
+# BaseDb -- BaseDbクラスは、データベースへの接続を担当し、
+#   そのためのインスタンスを生成する。
 class BlogManager < BaseDb
 
   def render_view(template)
@@ -78,9 +82,15 @@ class BlogManager < BaseDb
     print write_html('home')
   end
 
-  def archiveBlog(ganle = 'updated_at', order = 'desc')
-    query = %|select * from #{@table_name} order by #{ganle} #{order}|
+  def archiveBlog(cookie)
+    genre = cookie["name"]
+    order = cookie["value"]
+
+    query = %|select * from #{@table_name} order by #{genre} #{order}| 
     @results = @client.query(query)
+
+    #@cookie = {"name" => genre, "value" => order}
+    @cookie = cookie
     
     print write_html('archive')
   end

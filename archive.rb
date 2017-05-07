@@ -7,4 +7,8 @@ require './blog.rb'
 
 blog_manager = BlogManager.new
 
-blog_manager.archiveBlog
+cookie = {"name" => "updated_at", "value" => "desc"}
+
+blog_manager.archiveBlog(cookie)
+
+blog_manager.client.close

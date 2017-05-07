@@ -12,5 +12,5 @@ id = cgi['id'].to_i
 
 gazo_manager.deleteGazo(id)
 
-gazo_manager.gazo_client.close
+gazo_manager.client.close
 

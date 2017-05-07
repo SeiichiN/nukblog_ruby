@@ -59,7 +59,7 @@ if ((mode == 'new') || (mode == 'update'))
   
   # gazo_manager.setGazoに gazoインスタンスとmodeをわたす。
   gazo_manager.setGazo(gazo, mode)
-
+  gazo_manager.client.close
 else
   gazo_manager.listAllGazos
 end
@@ -70,7 +70,7 @@ end
 # バイナリデータをbase64でエンコードする。
 # そうしないと、umcompatible ASCII-8BIT and UTF-8 のエラーが起きる。
 # force_encodint('utf-8')としても、文字列がそのまま出力されるだけである。
-encimage = Base64.strict_encode64(gazo.image)
+#encimage = Base64.strict_encode64(gazo.image)
 
 
 #encimage = gazo.image
