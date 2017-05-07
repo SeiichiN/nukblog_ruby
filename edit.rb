@@ -15,3 +15,5 @@ if num_moji =~ /^[0-9]+$/
 else
   blog_manager.archiveBlog
 end
+
+blog_manager.client.close

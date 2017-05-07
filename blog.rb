@@ -95,10 +95,14 @@ class BlogManager < BaseDb
   end
 
   def findBlog(genre, word)
-    search = "%#{word}%"
-    query = "select * from #{@table_name} where #{genre} like ?"
-    statement = @client.prepare(query)
-    @results = statement.execute(search)
+    if word
+      # wordの中が半角あるいは全角のスペースで区切られていた場合、
+      # '|' に置換する。
+      search = word.gsub(/(\s+|　)/, '|')
+      query = "select * from #{@table_name} where #{genre} regexp ?"
+      statement = @client.prepare(query)
+      @results = statement.execute(search)
+    end
 
     # とりあえず、このソート順で表示させる。
     @cookie = {"name" => "updated_at", "value" => "desc"}

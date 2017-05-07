@@ -3,6 +3,9 @@
 require 'mysql2'
 require 'yaml'
 
+# このクラスは、blog.rb と gazo.rb で読み込まれる。
+# このクラスを親として、BlogManagerクラスと
+# GazoManagerクラスが作られている。
 class BaseDb
   def initialize
     db = YAML.load_file("database.yml")

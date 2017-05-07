@@ -5,6 +5,13 @@ require './dbase.rb'
 require 'mysql2'
 require 'yaml'
 
+# gazoconv.rb -- ユーティリティ
+# データベースにある画像（バイナリデータ）を
+# imageフォルダの中にファイルとして保存する。
+# ただ、一回一回保存していいか尋ねる。
+# なぜかというと、データベースに保存している
+# ファイル名でいいかどうかがあるからである。
+
 class GazoConv < BaseDb
 end
 

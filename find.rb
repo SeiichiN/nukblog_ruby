@@ -10,9 +10,16 @@ require 'cgi'
 
 cgi = CGI.new
 
-genre = CGI.escapeHTML(cgi['search'])
-word = CGI.escapeHTML(cgi['search_word'])
-
 blog_manager = BlogManager.new
 
-blog_manager.findBlog(genre, word)
+if !cgi['search_word'].empty?
+  genre = CGI.escapeHTML(cgi['search'])
+  word = CGI.escapeHTML(cgi['search_word'])
+
+  blog_manager.findBlog(genre, word)
+else
+  cookie = {'name' => 'updated_at', 'value' => 'desc'}
+  blog_manager.archiveBlog(cookie)
+end
+
+blog_manager.client.close

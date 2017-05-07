@@ -5,6 +5,9 @@
 require './gazo.rb'
 require 'cgi'
 
+# 画像を編集するためのURLからの
+# GET値を受け取るためのコード
+
 gazo_manager = GazoManager.new
 cgi = CGI.new
 

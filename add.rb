@@ -7,3 +7,5 @@ require './blog.rb'
 blog_manager = BlogManager.new
 
 blog_manager.addBlog
+
+blog_manager.client.close

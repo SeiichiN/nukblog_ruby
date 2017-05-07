@@ -11,3 +11,5 @@ cgi = CGI.new
 id = cgi['id'].to_i
 
 blog_manager.deleteBlog(id)
+
+blog_manager.client.close
