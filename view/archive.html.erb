@@ -16,7 +16,21 @@ val[ckname] = ckvalue
 %>
 
 <article class="archive">
-	<h2>アーカイブ</h2>
+	<h2>一覧</h2>
+
+    <%# 検索ボックス %>
+    <form action="find.rb" method="post">
+        <select name="search" class="button44">
+            <option value="title">タイトル</option>
+            <option value="body">本文</option>
+            <option value="category">カテゴリ</option>
+            <option value="tag">タグ</option>
+        </select>
+        <input type="text" name="search_word" class="btn44area">
+        <input type="submit" class="button44_submit" value="検索">
+    </form>
+    
+
 
 	<%# タイトル行の出力 %>
 	<div id="title-line" class="clearfix">

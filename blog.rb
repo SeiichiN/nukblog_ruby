@@ -94,6 +94,18 @@ class BlogManager < BaseDb
     print write_html('archive')
   end
 
+  def findBlog(genre, word)
+    search = "%#{word}%"
+    query = "select * from #{@table_name} where #{genre} like ?"
+    statement = @client.prepare(query)
+    @results = statement.execute(search)
+
+    # とりあえず、このソート順で表示させる。
+    @cookie = {"name" => "updated_at", "value" => "desc"}
+    print write_html('archive')
+  end
+  
+
   def showBlog(id)
     selectBlog(id)
     print write_html('show')
