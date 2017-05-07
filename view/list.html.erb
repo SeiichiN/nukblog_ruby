@@ -35,9 +35,10 @@
                 <%# 以下、右側リスト部分 %>
                 <div class="list-btn js-swipeListBtn">
                     <ul class="action clearfix">
-                        <li><a href="show.rb?id=<%= id %>"><img src="img/pic.svg" alt="show" width="24px" height="24px"></a></li>
-                        <li><a href="edit.rb?id=<%= id %>"><img src="img/edit.svg" alt="edit" width="24px" height="24px"></a></li>
-                        <li><a href="suredelete.rb?id=<%= id %>"><img src="img/docro.svg" alt="delete" width="24px" height="24px"></a></li>
+                        <li><a href="show.rb?id=<%= id %>"><i class="fa fa-picture-o"></i></a></li>
+                        <li><a href="edit.rb?id=<%= id %>"><i class="fa fa-edit"></i></a></li>
+                        <li><a href="#" onClick="disp(<%= id %>); "><i class="fa fa-trash"></i></a></li>
+
                     </ul>
                 </div><!-- .list-btn .js-swipeListBtn -->
             </div><!-- .list .js-swipeList .clearfix -->
@@ -48,4 +49,10 @@
     <%# link_to 'New Entry', new_entry_path %>
     
 </article>
+
+<script src="js/sure.js"></script>
+
+                        <!-- <li><a href="show.rb?id=<%#= id %>"><img src="img/pic.svg" alt="show" width="24px" height="24px"></a></li> -->
+                        <!-- <li><a href="edit.rb?id=<%#= id %>"><img src="img/edit.svg" alt="edit" width="24px" height="24px"></a></li> -->
+                        <!-- <li><a href="suredelete.rb?id=<%#= id %>"><img src="img/docro.svg" alt="delete" width="24px" height="24px"></a></li> -->
 

@@ -4,7 +4,7 @@
 <h1>Listing gazos</h1>
 <div class="list-header clearfix">
   <a href="gazonew.rb" class="new_gazo_button"><button type="button" class="button44_submit">New Gazo</button></a>
-  <p id="shoshiki">[[/gazos/show_image/<No>]]</p>
+  <!-- <p id="shoshiki"></p> -->
 </div>
 
 <% i = 0 %>
@@ -39,7 +39,7 @@
         <ul class="action clearfix">
           <li><a href="gazoshow.rb?id=<%= id %>"><i class="fa fa-picture-o"></i></a></li>
           <li><a href="gazoedit.rb?id=<%= id %>"><i class="fa fa-edit"></i></a></li>
-          <li><a href="gazodelete.rb?id=<%= id %>" onClick="disp(<%= id %>); "><i class="fa fa-trash"></i></a></li>
+          <li><a href="#" onClick="disp(<%= id %>); "><i class="fa fa-trash"></i></a></li>
         </ul>
       </div>
     </div>
@@ -48,4 +48,6 @@
 
 </article>
 
-<script src="js/sure.js"></script>
+<script src="js/sure_gazo.js"></script>
+
+<!-- <a href="gazodelete.rb?id=<%#= id %>"> -->

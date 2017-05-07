@@ -81,7 +81,7 @@ class BlogManager < BaseDb
     print write_html('home')
   end
 
-  def archiveBlog(cookie)
+  def archiveBlog(cookie = {'name' => 'updated_at', 'value' => 'desc'})
     genre = cookie["name"]
     order = cookie["value"]
 
@@ -195,7 +195,7 @@ class BlogManager < BaseDb
     query = %|delete from #{@table_name} where id = #{id}|
     results = @client.query(query)
     @notice = '削除しました'
-    archiveBlog
+    listAllBlog
   end
 
   # テーブルの初期化とフィールドの設定

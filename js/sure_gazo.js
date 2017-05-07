@@ -4,10 +4,9 @@
 function disp(id){
     // 「OK」時の処理開始 ＋ 確認ダイアログの表示
     if (window.confirm('本当にいいんですね？')) {
-        location.href = "delete.rb?id=" + id;
+        location.href = "gazodelete.rb?id=" + id;
     } else {
-        // window.alert('キャンセルしました');
-        location.href = "list.rb";
+       // window.alert('キャンセルしました');
     }
 }
 
